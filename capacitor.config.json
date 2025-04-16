@@ -1,0 +1,7 @@
+{
+  "appId": "com.shoppin.app",
+  "appName": "shoppin",
+  "webDir": "dist",
+  "bundledWebRuntime": "false" 
+  
+}
