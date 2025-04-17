@@ -25,26 +25,37 @@ const Shoppin = () => {
       <div className="product-card-container">
         <div className="product-card">
           <div className="product-image-container">
-             <img src={product.imageUrl} alt={product.name} className="product-image"/>
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="product-image"
+            />
           </div>
           <div className="product-details">
             <div className="product-info">
               <h2 className="product-name">{product.name}</h2>
               <p className="product-brand">
-                Brand: <a href="#" className="brand-link">{product.brand}</a>
+                Brand:{" "}
+                <a href="#" className="brand-link">
+                  {product.brand}
+                </a>
               </p>
             </div>
             <div className="product-pricing">
-              <span className="original-price">Rs. {product.originalPrice}</span>
+              <span className="original-price">
+                Rs. {product.originalPrice}
+              </span>
               <span className="current-price">Rs. {product.price}</span>
-              <span className="discount">({product.discountPercentage}% OFF)</span>
+              <span className="discount">
+                ({product.discountPercentage}% OFF)
+              </span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="footer-text">
-        SHOPPIN'
+        <span className="footer-text-border">SHOPPIN'</span>
       </div>
     </div>
   );
