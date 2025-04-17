@@ -45,6 +45,7 @@ const Shoppin = () => {
               <span className="original-price">
                 Rs. {product.originalPrice}
               </span>
+              
               <span className="current-price">Rs. {product.price}</span>
               <span className="discount">
                 ({product.discountPercentage}% OFF)
