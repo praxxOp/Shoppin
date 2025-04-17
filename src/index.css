@@ -3,3 +3,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html{
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: neuo;
+  src: url(./fonts/neuo.otf);
+}
+
+@font-face {
+  font-family: zentry;
+  src: url(./fonts/ZENTRY-Regular.ttf);
+}
