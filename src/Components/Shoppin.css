@@ -29,9 +29,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .product-card {
+  position: absolute;
   height: 95%;
   width: 90%;
   overflow: hidden;
@@ -125,5 +127,14 @@ box-shadow: 10px 10px 7px -11px rgba(153,20,26,1);
 }
 
 .footer-text-border {
+  -webkit-text-stroke: 1px #99141a;
+}
+
+.No-More{
+  font-family: zentry;
+  font-size: 5vh;
+  width: 30vh;
+  text-align: center;
+  color: #ffcdcd;
   -webkit-text-stroke: 1px #99141a;
 }

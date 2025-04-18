@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Shoppin.css";
 import Data from "../Data";
 import Like from "./Shoppin-Components/LikeComponent/Like";
@@ -7,12 +7,90 @@ import logo from "../assets/logo.webp";
 import LikeImg from "../assets/HeartM.svg";
 import CartImg from "../assets/CartM.svg";
 
-const Shoppin = () => {
-  const product = Data[0];
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 
-  if (!product) {
-    return <div>Loading product...</div>;
-  }
+const Shoppin = () => {
+  const [index, setIndex] = useState(0);
+  const [LikeInfo, setLikeInfo] = useState([]);
+  const [addToCart, setaddToCart] = useState([]);
+
+  const product = Data[index];
+
+  const handleSwipe = (direction, productObj) => {
+    if (direction === "right") {
+      setLikeInfo((prev) => [...prev, productObj]);
+    } else if (direction === "left") {
+      console.log("Passed:", productObj.id);
+    } else if (direction === "up") {
+      setaddToCart((prev) => [...prev, productObj]);
+    }
+    setIndex((prev) => prev + 1);
+  };
+  console.log(addToCart)
+  console.log(LikeInfo)
+  const SwipeCard = ({ product }) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotate = useTransform(x, [-200, 200], [-20, 20]);
+
+    const handleDragEnd = (_, info) => {
+      const offsetX = info.offset.x;
+      const offsetY = info.offset.y;
+
+      if (offsetX > 150) {
+        handleSwipe("right", product);
+      } else if (offsetX < -150) {
+        handleSwipe("left", product.id);
+      } else if (offsetY < -150) {
+        handleSwipe("up", product);
+      }
+    };
+
+    return (
+      <motion.div
+        className="product-card"
+        drag
+        dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
+        style={{ x, y, rotate }}
+        onDragEnd={handleDragEnd}
+        whileTap={{ scale: 1.05 }}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+      >
+        <div className="product-image-container">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="product-image"
+          />
+        </div>
+        <div className="product-details">
+          <div className="product-info">
+            <h2 className="product-name">{product.name}</h2>
+            <p className="product-brand">
+              Brand:{" "}
+              <a href="#" className="brand-link">
+                {product.brand}
+              </a>
+            </p>
+          </div>
+          <div className="product-pricing">
+            <span className="original-price">Rs. {product.originalPrice}</span>
+            <span className="current-price">Rs. {product.price}</span>
+            <span className="discount">
+              ({product.discountPercentage}% OFF)
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <div className="shoppin-page">
@@ -23,36 +101,13 @@ const Shoppin = () => {
       </div>
 
       <div className="product-card-container">
-        <div className="product-card">
-          <div className="product-image-container">
-            <img
-              src={product.imageUrl}
-              alt={product.name}
-              className="product-image"
-            />
-          </div>
-          <div className="product-details">
-            <div className="product-info">
-              <h2 className="product-name">{product.name}</h2>
-              <p className="product-brand">
-                Brand:{" "}
-                <a href="#" className="brand-link">
-                  {product.brand}
-                </a>
-              </p>
-            </div>
-            <div className="product-pricing">
-              <span className="original-price">
-                Rs. {product.originalPrice}
-              </span>
-              
-              <span className="current-price">Rs. {product.price}</span>
-              <span className="discount">
-                ({product.discountPercentage}% OFF)
-              </span>
-            </div>
-          </div>
-        </div>
+        <AnimatePresence>
+          {product ? (
+            <SwipeCard key={product.id} product={product} />
+          ) : (
+            <div className="No-More">No more products.</div>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="footer-text">
