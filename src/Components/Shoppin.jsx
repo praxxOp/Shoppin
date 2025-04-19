@@ -6,6 +6,7 @@ import AddToCart from "./Shoppin-Components/AddToCart/AddToCart";
 import logo from "../assets/logo.webp";
 import LikeImg from "../assets/HeartM.svg";
 import CartImg from "../assets/CartM.svg";
+import { BrowserRouter, Routes, Route, Link } from "react-router";
 
 import {
   motion,
@@ -31,8 +32,7 @@ const Shoppin = () => {
     }
     setIndex((prev) => prev + 1);
   };
-  console.log(addToCart)
-  console.log(LikeInfo)
+
   const SwipeCard = ({ product }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -93,27 +93,47 @@ const Shoppin = () => {
   };
 
   return (
-    <div className="shoppin-page">
-      <div className="shoppin-header">
-        <img src={LikeImg} alt="Like" className="header-icon" />
-        <img src={logo} alt="Shoppin Logo" className="header-logo" />
-        <img src={CartImg} alt="Cart" className="header-icon" />
-      </div>
+    <BrowserRouter>
+      <div className="shoppin-page">
+        <div className="shoppin-header">
+          <Link to="/Like">
+            <img src={LikeImg} alt="Like" className="header-icon" />
+          </Link>
+          <Link to="/">
+            <img src={logo} alt="Shoppin Logo" className="header-logo" />
+          </Link>
+          <Link to="/AddToCart">
+            <img src={CartImg} alt="Cart" className="header-icon" />
+          </Link>
+        </div>
 
-      <div className="product-card-container">
-        <AnimatePresence>
-          {product ? (
-            <SwipeCard key={product.id} product={product} />
-          ) : (
-            <div className="No-More">No more products.</div>
-          )}
-        </AnimatePresence>
-      </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="product-card-container">
+                <AnimatePresence>
+                  {product ? (
+                    <SwipeCard key={product.id} product={product} />
+                  ) : (
+                    <div className="No-More">No more products.</div>
+                  )}
+                </AnimatePresence>
+              </div>
+            }
+          />
+          <Route path="/Like" element={<Like LikeP={LikeInfo} />} />
+          <Route
+            path="/AddToCart"
+            element={<AddToCart AddToCartP={addToCart} />}
+          />
+        </Routes>
 
-      <div className="footer-text">
-        <span className="footer-text-border">SHOPPIN'</span>
+        <div className="footer-text">
+          <span className="footer-text-border">SHOPPIN'</span>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
