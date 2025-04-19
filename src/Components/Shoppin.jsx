@@ -45,7 +45,7 @@ const Shoppin = () => {
       if (offsetX > 150) {
         handleSwipe("right", product);
       } else if (offsetX < -150) {
-        handleSwipe("left", product.id);
+        handleSwipe("left", product);
       } else if (offsetY < -150) {
         handleSwipe("up", product);
       }
