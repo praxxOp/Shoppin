@@ -1,0 +1,85 @@
+.Like-main {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    gap: 2vh;
+    padding: 5vh 0%;
+  }
+  
+  .Like-main::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .Like-main::-webkit-scrollbar-thumb {
+    background-color: #99141a;
+    border-radius: 10px;
+  }
+  
+  .empty-like-message {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: zentry;
+    font-size: 5vh;
+    color: #ffcdcd;
+    -webkit-text-stroke: 1px #99141a;
+    width: 80%;
+    text-align: center;
+  }
+  
+  .Like-product-Component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 5vw;
+    width: 95%;
+    height: 20vh;
+    background-color: #ffe3e5;
+    border-radius: 15px;
+    border: 2px solid #99141a;
+    -webkit-box-shadow: 10px 10px 7px -11px rgba(153, 20, 26, 1);
+    -moz-box-shadow: 10px 10px 7px -11px rgba(153, 20, 26, 1);
+    box-shadow: 10px 10px 7px -11px rgba(153, 20, 26, 1);
+  }
+  
+  .like-left {
+    font-family: neuo;
+    width: 45vw;
+    height: 100%;
+    color: #99141a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .like-name {
+    font-size: 2.5vh;
+  }
+  
+  .like-brand {
+    font-size: 2vh;
+  }
+  
+  .like-price {
+    font-size: 3vh;
+  }
+  
+  .like-right {
+    height: 18vh;
+    width: 35vw;
+    overflow: hidden;
+  }
+  
+  .like-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px solid #fe4750;
+  }
+  

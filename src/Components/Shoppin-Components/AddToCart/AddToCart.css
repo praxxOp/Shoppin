@@ -46,7 +46,11 @@
 .addtocart-Left {
   font-family: neuo;
   width: 45vw;
+  height: 100%;
   color: #99141a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .addtocart-name {
   font-size: 2.5vh;
@@ -56,7 +60,7 @@
   font-size: 2vh;
 }
 .addtocart-Price {
-  font-size: 4vh;
+  font-size: 3vh;
 }
 
 .addtocart-right {
